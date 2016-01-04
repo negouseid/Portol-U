@@ -1,0 +1,32 @@
+<div id="user-info" class="well">
+  <div class="text-center">
+    <%= render 'shared/avatar', user: @user %><br>
+    <h5><%= link_to @user.name, @user %></h5>
+  </div>
+     <ul class="nav nav-pills nav-stacked">
+          <li><%= link_to 'Edit Profile', edit_user_path(@user) %></li>
+          <li><%= link_to 'Change password', edit_user_registration_path %></li>
+          <li><%= link_to 'Friends', friends_user_path(@user) %></li>
+          <li><%= link_to 'Followers', followers_user_path(@user) %></li>
+          <li><%= link_to 'Deactivate', deactivate_user_path(@user) %></li>
+        </ul>
+  <% if @user.dob.present? %>
+    <h5>
+      <%= fa_icon @user.sex %>
+      <%= "#{pluralize(age(@user.dob), 'year')} old" %>
+    </h5>
+  <% end %>
+  <% if @user.location.present? %>
+    <h5>
+      <%= fa_icon 'map-marker' %>
+      <%= @user.location %>
+    </h5>
+  <% end %>
+  <br>
+  <div class="text-center">
+    <% unless is_current_user?(@user) %>
+      <%= render 'follows/form', user: @user %>
+      <h6><%= 'Follows you' if current_user.followed_by?(@user) %></h6>
+    <% end %>
+  </div>
+</div>

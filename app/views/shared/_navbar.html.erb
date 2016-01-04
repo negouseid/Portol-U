@@ -1,0 +1,61 @@
+
+
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+   
+      <!-- Brand and toggle get grouped for better mobile display -->
+
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+            <%= link_to "Portfolu", root_url, class: "navbar-brand" %>
+      </div>
+    
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+          <li><%= link_to 'About', about_path %></li>
+          <li><a href="http://www.fastweb.com/college-search/articles/summer-programs-for-high-school-students" target="_blank">Summer Programs</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">College <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="https://bigfuture.collegeboard.org/college-search" target="_blank">Find A School</a></li>
+              <li><a href="http://colleges.usnews.rankingsandreviews.com/best-colleges/rankings/national-universities" target="_blank">School Ranking</a></li>
+              <li class="divider"></li>
+              <li><a href="http://www.payscale.com/college-salary-report" target="_blank">Return on Investment</a></li>
+              <li class="divider"></li>
+              <li><a href="http://www.collegexpress.com/articles-and-advice/student-life/articles/living-campus/facts-campus-life/" target="_blank">Fact About College</a></li>
+            </ul>
+          </li>
+        </ul>
+    
+       
+        <ul class="nav navbar-nav navbar-right">
+      <div class="collapse navbar-collapse" id="navbar-top">
+        <ul class="nav navbar-nav navbar-right">
+          <% if user_signed_in? %>
+            <li><%= link_to(current_user.name, user_path(current_user)) %></li>
+            <li><%= link_to('Sign out', destroy_user_session_path, method: :delete) %></li>
+          <% else %>
+            
+            <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sign In <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+                <li><%= render "devise/sessions/new", :@user => User.new %></li>
+          <% end %>
+            </ul>
+          </li>
+          
+        </ul>
+        </div>
+          </li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
